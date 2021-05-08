@@ -148,11 +148,13 @@ TError = 0
 for i in range(int(round(segments))):
     xseg = xs[i*20:(i+1)*20]
     if goodLines[i][0] == "Linear":
+        print("Lin")
         a = goodLines[i][1]
         b = goodLines[i][2]
         plt.plot(xseg, [a*x + b for x in xseg], 'r-', lw = 2)
         TError += goodLines[i][3]
     elif goodLines[i][0] == "Poly":
+        print("Poly")
         c = goodLines[i][1]
         d = goodLines[i][2]
         e = goodLines[i][3]
@@ -160,9 +162,11 @@ for i in range(int(round(segments))):
         plt.plot(xseg, [c*(x ** 3) + d*(x ** 2) + e*x + f for x in xseg], 'r-', lw = 2)
         TError += goodLines[i][5]
     else:
+        print("Unknown")
         ua = goodLines[i][1]
         ub = goodLines[i][2]
         plt.plot(xseg, [ua*np.sin(x) + ub for x in xseg], 'r-', lw = 2)
+        TError += goodLines[i][3]
 
 print(TError)
 
