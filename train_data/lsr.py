@@ -36,18 +36,21 @@ def view_data_segments(xs, ys):
 def leastSquaresLin(xs, ys):
     ones = np.ones(xs.shape)
     x2 = np.column_stack((ones, xs))
-    return np.linalg.inv(x2.T.dot(x2)).dot(x2.T).dot(ys)
+    return np.linalg.inv(x2.T @ x2) @ x2.T @ ys
+    
 
 
 def leastSquaresPoly(xs, ys):
     ones = np.ones(xs.shape)
     x2 = np.column_stack((ones, xs, xs ** 2, xs ** 3))
-    return np.linalg.inv(x2.T.dot(x2)).dot(x2.T).dot(ys)
+    return np.linalg.inv(x2.T @ x2) @ x2.T @ ys
+    
 
 def leastSquaresUnknown(xs, ys):
     ones = np.ones(xs.shape)
     x2 = np.column_stack((ones, np.sin(xs)))
-    return np.linalg.inv(x2.T.dot(x2)).dot(x2.T).dot(ys)
+    return np.linalg.inv(x2.T @ x2) @ x2.T @ ys
+    
 
 # Returns squared error between calculated and real values
 def squaredError(calculated, real):
